@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MultiCodes.Lib
 {
-    public class File
+    public class ItemNode
     {
+
     }
 }

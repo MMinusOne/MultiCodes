@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:MultiCodes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/Dark.xaml" />
+                <ResourceDictionary Source="/ViewList.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

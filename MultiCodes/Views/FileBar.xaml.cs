@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Bridge;
 
-namespace MultiCodes
+namespace MultiCodes.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FileBar.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FileBar : UserControl
     {
-        public MainWindow()
+        public FileBar()
         {
             InitializeComponent();
         }

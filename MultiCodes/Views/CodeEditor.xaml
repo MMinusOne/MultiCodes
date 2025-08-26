@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MultiCodes.Views.CodeEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MultiCodes.Views"
+             xmlns:vm="clr-namespace:MultiCodes.ViewModels"
+             xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20px"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <ItemsControl ItemsSource="{Binding Source={x:Static vm:CodeEditorViewModel.Instance}, Path=CodeLines}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{DynamicResource BgBase100}" Text="{Binding .}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+        <avalon:TextEditor
+            Grid.Column="1"
+            Background="{DynamicResource BgBase600}"
+            SyntaxHighlighting="js"
+            Padding="2,2,2,2"
+            x:Name="textEditor"
+            TextChanged="TextEditor_TextChanged"/>
+    </Grid>
+</UserControl>

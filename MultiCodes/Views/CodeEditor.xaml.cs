@@ -12,18 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Bridge;
+using MultiCodes.ViewModels;
 
-namespace MultiCodes
+namespace MultiCodes.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CodeEditor.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CodeEditor : UserControl
     {
-        public MainWindow()
+        public CodeEditor()
         {
             InitializeComponent();
+        }
+
+        private void TextEditor_TextChanged(object sender, EventArgs e)
+        {
+            CodeEditorViewModel.Instance.Code = textEditor.Text;
         }
     }
 }

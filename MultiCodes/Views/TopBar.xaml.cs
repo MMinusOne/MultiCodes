@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Bridge;
 
-namespace MultiCodes
+namespace MultiCodes.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TopBar.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TopBar : UserControl
     {
-        public MainWindow()
+        public TopBar()
         {
             InitializeComponent();
         }

@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BgBase100" Color="#f8fafc" />
+    <SolidColorBrush x:Key="BgBase200" Color="#f1f5f9" />
+    <SolidColorBrush x:Key="BgBase300" Color="#e2e8f0" />
+    <SolidColorBrush x:Key="BgBase400" Color="#94a3b8" />
+    <SolidColorBrush x:Key="BgBase500" Color="#475569" />
+    <SolidColorBrush x:Key="BgBase600" Color="#334155" />
+    <SolidColorBrush x:Key="BgBase700" Color="#1e293b" />
+    <SolidColorBrush x:Key="BgBase800" Color="#0f172a" />
+    <SolidColorBrush x:Key="BgBase900" Color="#020617" />
+    
+    
+</ResourceDictionary>
