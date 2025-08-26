@@ -161,8 +161,8 @@
     <ClCompile Include="Bridge.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bakcend\Bakcend.vcxproj">
-      <Project>{1484b74f-1a7a-4926-bbe0-fa654310afc0}</Project>
+    <ProjectReference Include="..\Backend\Backend.vcxproj">
+      <Project>{f2b755a0-7b69-491b-abe8-bb1938436c36}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

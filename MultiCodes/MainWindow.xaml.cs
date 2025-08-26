@@ -24,6 +24,8 @@ namespace MultiCodes
         public MainWindow()
         {
             InitializeComponent();
+            var fileManager = new Bridge.FileManagerBridge();
+           
         }
     }
 }
