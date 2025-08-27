@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Patform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Patform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Patform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Patform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -140,10 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Console.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="ItemNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="ItemNode.cpp" />
   </ItemGroup>

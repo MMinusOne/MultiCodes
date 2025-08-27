@@ -75,20 +75,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)bin\$(platform)\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)obj\$(platform)\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -96,12 +96,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutiondir)backend;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)backend;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)backend\bin\$(platform)\$(configuration);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)backend\bin\$(Platform)\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>backend.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -113,12 +114,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutiondir)backend;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)backend;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)backend\bin\$(platform)\$(configuration);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)backend\bin\$(Platform)\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>backend.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -128,13 +130,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutiondir)backend;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)backend;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)backend\bin\$(platform)\$(configuration);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)backend\bin\$(Platform)\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>backend.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -146,18 +148,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutiondir)backend;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)backend;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(solutiondir)backend\bin\$(platform)\$(configuration);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)backend\bin\$(Platform)\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>backend.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Bridge.h" />
-  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bridge.cpp" />
   </ItemGroup>
@@ -165,6 +165,9 @@
     <ProjectReference Include="..\Backend\Backend.vcxproj">
       <Project>{f2b755a0-7b69-491b-abe8-bb1938436c36}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bridge.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

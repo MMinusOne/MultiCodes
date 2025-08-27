@@ -35,7 +35,7 @@ namespace MultiCodes.ViewModels
             set { _codeLines = value; OnPropertyChanged(nameof(CodeLines)); }
         }
 
-        int _fontSize = 10;
+        int _fontSize = 15;
         public int FontSize
         {
             get { return _fontSize; }
@@ -49,7 +49,10 @@ namespace MultiCodes.ViewModels
             set
             {
                 _code = value;
+
                 CodeLines.Clear();
+
+
                 for (int i = 1; i < _code.Length+1; i++)
                 {
                     if (_code[i-1] ==  '\n')
@@ -57,11 +60,10 @@ namespace MultiCodes.ViewModels
                         CodeLines.Add(CodeLines.Count.ToString());
                     }
                 }
+
                 OnPropertyChanged(nameof(Code));
             }
         }
-
-       
 
         public event PropertyChangedEventHandler PropertyChanged;
 

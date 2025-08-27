@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Bridge;
 
 namespace MultiCodes.ViewModels
 {
@@ -18,5 +19,12 @@ namespace MultiCodes.ViewModels
                 return _instance;
             }
         }
+
+
+        public Console()
+        {
+            _instance = this;
+        }
+
     }
 }

@@ -15,4 +15,10 @@ namespace  Bridge {
 	public:
 		List<ItemNode^>^ createProjectTree(String^ directory);
 	};
+
+	public ref class ConsoleBridge {
+	public:
+		String^ read();
+		String^ execute(String^ command);
+	};
 }

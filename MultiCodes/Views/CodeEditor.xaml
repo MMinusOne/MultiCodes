@@ -33,7 +33,7 @@
         <avalon:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Column="1"
-            Background="{DynamicResource BgBase600}"
+            Background="{DynamicResource BgBase500}"
             SyntaxHighlighting="C#"
             FontWeight="SemiBold"
             FontFamily="Consolas"

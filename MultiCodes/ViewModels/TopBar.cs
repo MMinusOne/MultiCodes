@@ -25,6 +25,7 @@ namespace MultiCodes.ViewModels
         public TopBar()
         {
             _instance = this;
+            var e = Console.Instance;
         }
 
         ICommand _openProjectCommand;
