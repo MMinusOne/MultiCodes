@@ -31,9 +31,12 @@
         </Grid>
 
         <avalon:TextEditor
+            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Column="1"
             Background="{DynamicResource BgBase600}"
-            SyntaxHighlighting="js"
+            SyntaxHighlighting="C#"
+            FontWeight="SemiBold"
+            FontFamily="Consolas"
             Padding="2,2,2,2"
             x:Name="textEditor"
             FontSize="{Binding Path=FontSize, Source={x:Static vm:CodeEditorViewModel.Instance}}"
