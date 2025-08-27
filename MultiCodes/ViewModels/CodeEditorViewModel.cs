@@ -28,13 +28,19 @@ namespace MultiCodes.ViewModels
             _instance = this;
         }
 
-        ObservableCollection<string> _codeLines = new ObservableCollection<string>();
+        ObservableCollection<string> _codeLines = new ObservableCollection<string> { };
         public ObservableCollection<string> CodeLines
         {
             get { return _codeLines; }
             set { _codeLines = value; OnPropertyChanged(nameof(CodeLines)); }
         }
 
+        int _fontSize = 10;
+        public int FontSize
+        {
+            get { return _fontSize; }
+            set { _fontSize = value; OnPropertyChanged(nameof(FontSize)); }
+        }
 
         string _code;
         public string Code
@@ -43,9 +49,10 @@ namespace MultiCodes.ViewModels
             set
             {
                 _code = value;
-                for (int i = 0; i < _code.Length+1; i++)
+                CodeLines.Clear();
+                for (int i = 1; i < _code.Length+1; i++)
                 {
-                    if (_code[i] ==  '\n')
+                    if (_code[i-1] ==  '\n')
                     {
                         CodeLines.Add(CodeLines.Count.ToString());
                     }
@@ -54,10 +61,9 @@ namespace MultiCodes.ViewModels
             }
         }
 
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-
 
         void OnPropertyChanged(string propertyName)
         {

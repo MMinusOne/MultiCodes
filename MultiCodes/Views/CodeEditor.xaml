@@ -24,7 +24,7 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Foreground="{DynamicResource BgBase100}" Text="{Binding .}"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource BgBase100}" Text="{Binding .}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -36,6 +36,7 @@
             SyntaxHighlighting="js"
             Padding="2,2,2,2"
             x:Name="textEditor"
+            FontSize="{Binding Path=FontSize, Source={x:Static vm:CodeEditorViewModel.Instance}}"
             TextChanged="TextEditor_TextChanged"/>
     </Grid>
 </UserControl>

@@ -13,6 +13,6 @@ namespace  Bridge {
 
 	public ref class FileManagerBridge {
 	public:
-		List<ItemNode^>^ readDirectory(String^ directory);
+		List<ItemNode^>^ createProjectTree(String^ directory);
 	};
 }

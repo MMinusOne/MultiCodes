@@ -12,9 +12,9 @@ using FileManagerBridge = Bridge::FileManagerBridge;
 
 auto fileManagerNative = new FileManager();
 
-List<Bridge::ItemNode^>^ FileManagerBridge::readDirectory(String^ directory) {
+List<Bridge::ItemNode^>^ FileManagerBridge::createProjectTree(String^ directory) {
 	auto directoryTree = gcnew List<Bridge::ItemNode^>();
-	auto directoryTreeNative = fileManagerNative->readDirectory(msclr::interop::marshal_as<std::string>((String^)directory));
+	auto directoryTreeNative = fileManagerNative->createProjectTree(msclr::interop::marshal_as<std::string>((String^)directory));
 	
 
 	return directoryTree;

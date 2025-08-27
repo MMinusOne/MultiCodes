@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:MultiCodes.ViewModels" 
              xmlns:local="clr-namespace:MultiCodes.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="30" d:DesignWidth="800">
+    <Grid Background="{DynamicResource BgBase900}">
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding Source={x:Static vm:TopBar.Instance}, Path=OpenProjectCommand}" Margin="2,2,2,2" HorizontalAlignment="Center">Open</Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="2,2,2,2" HorizontalAlignment="Center">Ask AI</Button>
+            <Button Margin="2,2,2,2" HorizontalAlignment="Center" Command="{Binding Path=ZoomOutCommand, Source={x:Static vm:TopBar.Instance}}">Zoom Out</Button>
+            <Button Margin="2,2,2,2" HorizontalAlignment="Center" Command="{Binding Path=ZoomInCommand, Source={x:Static vm:TopBar.Instance}}">Zoom In</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

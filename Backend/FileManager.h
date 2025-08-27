@@ -1,7 +1,11 @@
 #pragma once
+#include "ItemNode.h"
+#include <filesystem>
+#include <vector>
+#include <string>
 class __declspec(dllexport) FileManager
 {
 public:
-	inline std::vector<std::string> readDirectory(std::string directoryPath) { return {}; }
+	std::vector<ItemNode> createProjectTree(std::string directoryPath);
 };
 

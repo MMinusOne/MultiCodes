@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,9 +141,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="ItemNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="ItemNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

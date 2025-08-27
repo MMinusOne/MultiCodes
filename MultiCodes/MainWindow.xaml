@@ -7,10 +7,11 @@
         xmlns:vm="clr-namespace:MultiCodes.ViewModels"
         xmlns:local="clr-namespace:MultiCodes"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="{DynamicResource BgBase800}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20px" />
+            <RowDefinition Height="30px" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
 
@@ -29,7 +30,7 @@
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <v:CodeEditor />
-                <v:Console />
+                <v:Console Grid.Row="1"/>
             </Grid>
         </Grid>
     </Grid>

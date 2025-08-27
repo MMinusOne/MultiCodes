@@ -18,9 +18,15 @@
     <ClInclude Include="FileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ItemNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
