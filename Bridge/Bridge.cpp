@@ -12,17 +12,16 @@ using FileManagerBridge = Bridge::FileManagerBridge;
 using ConsoleBridge = Bridge::ConsoleBridge;
 
 auto fileManagerNative = new FileManager();
-auto consoleNativeInstance = ConsoleNative::getInstance();
+ConsoleNative& consoleNativeInstance = ConsoleNative::getInstance();
 
 String^ ConsoleBridge::read() {
 	auto consoleText = consoleNativeInstance.read();
 	return msclr::interop::marshal_as<String^>(consoleText);
 }
 
-String^ ConsoleBridge::execute(String^ command) {
+void ConsoleBridge::execute(String^ command) {
 	auto commandNative = msclr::interop::marshal_as<std::string>(command);
-	auto out = consoleNativeInstance.execute(commandNative.c_str());
-	return msclr::interop::marshal_as<String^>(out);
+	consoleNativeInstance.execute(commandNative.c_str());
 }
 
 List<Bridge::ItemNode^>^ FileManagerBridge::createProjectTree(String^ directory) {

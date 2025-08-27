@@ -19,6 +19,6 @@ namespace  Bridge {
 	public ref class ConsoleBridge {
 	public:
 		String^ read();
-		String^ execute(String^ command);
+		void execute(String^ command);
 	};
 }

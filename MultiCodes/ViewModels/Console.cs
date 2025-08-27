@@ -24,6 +24,12 @@ namespace MultiCodes.ViewModels
         public Console()
         {
             _instance = this;
+            var consoleBridge = new Bridge.ConsoleBridge();
+            consoleBridge.execute("cd C:\\Users\\LENOVO\\Downloads\\programming-languages");
+            consoleBridge.execute("dir");
+            consoleBridge.execute("help");
+            var r = consoleBridge.read();
+
         }
 
     }
