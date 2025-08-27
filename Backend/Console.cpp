@@ -4,16 +4,12 @@
 #include <cstdio>
 #include <array>
 #include <thread>
-#include <atomic>
 #include <vector>
 #include <iostream>
-#include <queue>
-#include <condition_variable>
 #include <mutex>
 #include "Console.h";
 
 ConsoleNative::ConsoleNative() : consoleText("") {
-	std::thread(&ConsoleNative::executeState, this).detach();
 }
 
 ConsoleNative& __stdcall ConsoleNative::getInstance() {
@@ -22,60 +18,33 @@ ConsoleNative& __stdcall ConsoleNative::getInstance() {
 }
 
 std::string __stdcall ConsoleNative::read() {
-	std::lock_guard<std::mutex> lock(queueMutex);
 	return consoleText;
 }
 
+std::vector<std::string> __stdcall ConsoleNative::readBlocks() {
+	return consoleBlocks;
+}
+
 void __stdcall ConsoleNative::execute(const std::string& command) {
-	{
-		std::lock_guard<std::mutex> lock(queueMutex);
-		this->commands.push(command);
+	std::array<char, 128> buffer;
+	std::string result;
+
+	std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(command.c_str(), "r"), _pclose);
+	if (!pipe) {
+		throw std::runtime_error("popopen() failed");
 	}
 
-	condition.notify_one();
-}
+	std::string currentBlock;
 
-void __stdcall ConsoleNative::executeState() {
-	while (isRunning) {
-		std::string command;
-
-		{
-			std::unique_lock<std::mutex> lock(queueMutex);
-			condition.wait(lock, [this] {return !commands.empty() || !isRunning; });
-
-			if (!isRunning) break;
-
-			command = std::move(commands.front());
-			commands.pop();
-		}
-
-		std::array<char, 128> buffer;
-		std::string result;
-
-		FILE* pipe = _popen(command.c_str(), "r");
-
-		if (!pipe) {
-			{
-				std::lock_guard<std::mutex> lock(queueMutex);
-				consoleText += "PIPE ERROR";
-			}
-			continue;
-		}
-
-		while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
-			result += buffer.data();
-			consoleText += buffer.data();
-		}
-
-		{
-			std::lock_guard<std::mutex> lock(queueMutex);
-			consoleText += result;
-		}
+	while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+		result += buffer.data();
+		consoleText += buffer.data();
+		currentBlock += buffer.data();
 	}
+	consoleBlocks.push_back(currentBlock);
 
 }
+
 
 ConsoleNative::~ConsoleNative() {
-	isRunning = false;
-	condition.notify_all();
 }

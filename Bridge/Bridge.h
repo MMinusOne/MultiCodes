@@ -20,5 +20,6 @@ namespace  Bridge {
 	public:
 		String^ read();
 		void execute(String^ command);
+		List<String^>^ readBlocks();
 	};
 }

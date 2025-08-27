@@ -19,6 +19,17 @@ String^ ConsoleBridge::read() {
 	return msclr::interop::marshal_as<String^>(consoleText);
 }
 
+List<String^>^ ConsoleBridge::readBlocks() {
+	auto consoleBlocksNative = consoleNativeInstance.readBlocks();
+	auto consoleBlocks = gcnew List<String^>();
+
+	for (auto& consoleBlock : consoleBlocksNative) {
+		consoleBlocks->Add(msclr::interop::marshal_as<String^>(consoleBlock));
+	}
+
+	return consoleBlocks;
+}
+
 void ConsoleBridge::execute(String^ command) {
 	auto commandNative = msclr::interop::marshal_as<std::string>(command);
 	consoleNativeInstance.execute(commandNative.c_str());

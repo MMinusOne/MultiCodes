@@ -7,28 +7,33 @@
              xmlns:vm="clr-namespace:MultiCodes.ViewModels"
              xmlns:conv="clr-namespace:MultiCodes.Lib.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="800">
+             d:DesignHeight="250" d:DesignWidth="800"
+             KeyDown="UserControl_KeyDown"
+             >
     
     <UserControl.Resources>
         <conv:CommandToReadonlyConverter x:Key="CommandToReadonlyConverter"/>
     </UserControl.Resources>
     
     <Grid Background="{DynamicResource BgBase900}">
-        <ItemsControl ItemsSource="{Binding Path=CLIBlocks, Source={x:Static vm:Console.Instance}}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <ScrollViewer>
+            <ItemsControl Padding="10,10,10,10" ItemsSource="{Binding Path=CLIBlocks, Source={x:Static vm:ConsoleViewModel.Instance}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBox
-                        Text="{Binding Content}"
-                        IsReadOnly="{Binding ., Converter={StaticResource CommandToReadonlyConverter}}"/>
-                
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBox
+                 Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Background="Transparent"
+                 IsReadOnly="{Binding ., Converter={StaticResource CommandToReadonlyConverter}}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+       
     </Grid>
 </UserControl>

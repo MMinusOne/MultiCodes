@@ -7,7 +7,8 @@
              xmlns:vm="clr-namespace:MultiCodes.ViewModels"
              xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20px"></ColumnDefinition>

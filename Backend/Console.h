@@ -5,29 +5,21 @@
 #include <cstdio>
 #include <array>
 #include <thread>
-#include <atomic>
 #include <vector>
 #include <iostream>
-#include <queue>
-#include <condition_variable>
-#include <sstream>
-#include <sys/types.h>
 
 class __declspec(dllexport) ConsoleNative
 {
     std::string consoleText;
-    std::queue<std::string> commands;
-    bool isRunning = true;
-    std::mutex queueMutex;
-    std::condition_variable condition;
-    std::thread workerThread;
+    std::vector<std::string> consoleBlocks;
+    std::vector<std::string> commands;
 
 public:
     ConsoleNative();
     static ConsoleNative& getInstance();
     std::string read();
     void execute(const std::string& command);
-    void executeState();
+    std::vector<std::string> readBlocks();
     ~ConsoleNative();
 };
 

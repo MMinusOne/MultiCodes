@@ -12,7 +12,7 @@
     <DataTemplate DataType="{x:Type vm:CodeEditorViewModel}">
         <v:CodeEditor />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:Console}">
+    <DataTemplate DataType="{x:Type vm:ConsoleViewModel}">
         <v:Console />
     </DataTemplate>
 </ResourceDictionary>

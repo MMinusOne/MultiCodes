@@ -10,26 +10,26 @@ using Bridge;
 
 namespace MultiCodes.ViewModels
 {
-    public class Console: INotifyPropertyChanged
+    public class ConsoleViewModel: INotifyPropertyChanged
     {
-        static Console _instance;
-        public static Console Instance
+        static ConsoleViewModel _instance;
+        public static ConsoleViewModel Instance
         {
             get
             {
-                if (_instance == null) _instance = new Console();
+                if (_instance == null) _instance = new ConsoleViewModel();
                 return _instance;
             }
         }
 
 
-        public Console()
+        public ConsoleViewModel()
         {
             _instance = this;
         }
 
         ObservableCollection<CLIBlock> _CLIBlocks = new ObservableCollection<CLIBlock> {
-            new CLIBlock("", false, false)
+            new CLIBlock("", true, false)
         };
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -38,6 +38,23 @@ namespace MultiCodes.ViewModels
         {
             get { return _CLIBlocks; }
             set { _CLIBlocks = value; OnPropertyChanged(nameof(CLIBlocks));  }
+        }
+
+        public void ExecutePrompt()
+        {
+            var prompt = CLIBlocks[CLIBlocks.Count-1];
+            if (prompt == null) return;
+            if(prompt.IsUserCommand && !prompt.Executed)
+            {
+                var consoleBridge = new Bridge.ConsoleBridge();
+                consoleBridge.execute(prompt.Content);
+                var blocks = consoleBridge.readBlocks();
+                var t = consoleBridge.read();
+                var block = blocks[blocks.Count-1];
+                _CLIBlocks.Add(new CLIBlock(block, false, true));
+                _CLIBlocks.Add(new CLIBlock("", true, false));
+                OnPropertyChanged(nameof(CLIBlocks));
+            }
         }
 
         void OnPropertyChanged(string propertyName)
@@ -55,7 +72,7 @@ namespace MultiCodes.ViewModels
         public string Content
         {
             get { return _content; }
-            set { _content = value; OnPropertyChanged(nameof(Content)); }
+            set {_content = value; OnPropertyChanged(nameof(Content)); }
         }
 
         bool _isUserCommand;
@@ -71,6 +88,7 @@ namespace MultiCodes.ViewModels
             get { return _executed; }
             set { _executed = value; OnPropertyChanged(nameof(Executed)); }
         }
+        
 
         public CLIBlock(string content, bool isUserCommand, bool executed)
         {

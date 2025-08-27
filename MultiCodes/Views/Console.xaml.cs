@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiCodes.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace MultiCodes.Views
         public Console()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ConsoleViewModel.Instance.ExecutePrompt();
+            }
+        
         }
     }
 }
