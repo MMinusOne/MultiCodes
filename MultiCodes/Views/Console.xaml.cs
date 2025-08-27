@@ -31,6 +31,7 @@ namespace MultiCodes.Views
             if (e.Key == Key.Enter)
             {
                 ConsoleViewModel.Instance.ExecutePrompt();
+                Console_Scroll.ScrollToVerticalOffset(Console_Scroll.ExtentHeight);
             }
         
         }

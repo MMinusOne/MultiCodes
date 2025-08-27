@@ -7,16 +7,19 @@
              xmlns:vm="clr-namespace:MultiCodes.ViewModels"
              xmlns:conv="clr-namespace:MultiCodes.Lib.Converters"
              mc:Ignorable="d" 
+             xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
              d:DesignHeight="250" d:DesignWidth="800"
              KeyDown="UserControl_KeyDown"
              >
-    
+
     <UserControl.Resources>
         <conv:CommandToReadonlyConverter x:Key="CommandToReadonlyConverter"/>
     </UserControl.Resources>
-    
+
     <Grid Background="{DynamicResource BgBase900}">
-        <ScrollViewer>
+        <ScrollViewer
+            x:Name="Console_Scroll"
+            >
             <ItemsControl Padding="10,10,10,10" ItemsSource="{Binding Path=CLIBlocks, Source={x:Static vm:ConsoleViewModel.Instance}}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -27,13 +30,16 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBox
-                 Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Background="Transparent"
-                 IsReadOnly="{Binding ., Converter={StaticResource CommandToReadonlyConverter}}"/>
+                            Foreground="White"
+                            FontSize="15"
+                            Background="Transparent"
+                            FontWeight="SemiBold"
+                            Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            IsReadOnly="{Binding ., Converter={StaticResource CommandToReadonlyConverter}}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-       
+
     </Grid>
 </UserControl>
