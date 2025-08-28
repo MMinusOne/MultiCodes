@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <fstream>
 #include "FileManager.h"
 #include "ItemNode.h"
 
@@ -30,4 +31,19 @@ ItemNodeNative* __stdcall FileManager::createProjectTree(std::string directory) 
 	traverseDirectory(directory, rootNode);
 
 	return rootNode;
+}
+
+void __stdcall FileManager::createFile(std::string path, std::string fileName) {
+	std::string fullPath = path + fileName;
+
+	std::ofstream file(fullPath);
+}
+
+void __stdcall FileManager::createFolder(std::string path, std::string folderName) {
+	std::string fullPath = path + folderName;
+
+	std::filesystem::path folder(fullPath);
+}
+void __stdcall FileManager::deletePath(std::string path) {
+	std::filesystem::remove(path);
 }

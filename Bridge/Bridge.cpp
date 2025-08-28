@@ -54,6 +54,18 @@ void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNodeBridge^ rootTree) 
 	}
 }
 
+void FileManagerBridge::createFile(String^ path, String^ fileName) {
+	fileManagerNative->createFile(msclr::interop::marshal_as<std::string>(path + "\\"), msclr::interop::marshal_as<std::string>(fileName));
+}
+
+void FileManagerBridge::createFolder(String^ path, String^ folderName) {
+	fileManagerNative->createFolder(msclr::interop::marshal_as<std::string>(path), msclr::interop::marshal_as<std::string>(folderName));
+}
+
+void FileManagerBridge::deletePath(String^ path) {
+	fileManagerNative->deletePath(msclr::interop::marshal_as<std::string>(path));
+}
+
 Bridge::ItemNodeBridge^ FileManagerBridge::createProjectTree(String^ directory) {
 	auto directoryTreeNative = fileManagerNative->createProjectTree(msclr::interop::marshal_as<std::string>((String^)directory));
 	ItemNodeBridge^ rootTree = gcnew Bridge::ItemNodeBridge();

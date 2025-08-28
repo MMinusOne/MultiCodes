@@ -6,16 +6,43 @@
              xmlns:local="clr-namespace:MultiCodes.Views"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:MultiCodes.ViewModels"
+             xmlns:conv="clr-namespace:MultiCodes.Lib.Converters"
              d:DesignHeight="450" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <conv:SelectedItemNodeToVisibilityConverter x:Key="SelectedItemNodeToVisibilityConverter"/>
+    </UserControl.Resources>
+
     <Border BorderBrush="{DynamicResource BgBase600}" BorderThickness="1">
         <Grid Background="{DynamicResource BgBase800}">
-            <TreeView Background="Transparent" ItemsSource="{Binding Path=RootFileTree.Children, Source={x:Static vm:FileBar.Instance}}">
+            <TreeView 
+                     SelectedItemChanged="TreeView_SelectedItemChanged"
+                      Background="Transparent"
+                      ItemsSource="{Binding Path=RootFileTree.Children, Source={x:Static vm:FileBarViewModel.Instance}}">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                         <TextBlock Text="{Binding Name}" FontSize="12" FontWeight="SemiBold" Foreground="White"/>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
+
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem
+                        Header="New Folder"
+                        Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem
+                        Click="MenuItem_CreateFileClick"
+                        Header="New File"
+                        Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem 
+                        Click="MenuItem_DeletePathClick"
+                        Header="Delete" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="Rename" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Separator />
+                    <MenuItem Header="Copy Path" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
         </Grid>
     </Border>
 </UserControl>

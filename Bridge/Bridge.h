@@ -16,6 +16,9 @@ namespace  Bridge {
 	public ref class FileManagerBridge {
 	public:
 		ItemNodeBridge^ createProjectTree(String^ directory);
+		void createFile(String^ path, String^ fileName);
+		void createFolder(String^ path, String^ folderName);
+		void deletePath(String^ path);
 	};
 
 	public ref class ConsoleBridge {

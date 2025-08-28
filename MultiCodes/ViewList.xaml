@@ -6,7 +6,7 @@
     <DataTemplate DataType="{x:Type vm:TopBar}">
         <v:TopBar />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:FileBar}">
+    <DataTemplate DataType="{x:Type vm:FileBarViewModel}">
         <v:FileBar />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:CodeEditorViewModel}">

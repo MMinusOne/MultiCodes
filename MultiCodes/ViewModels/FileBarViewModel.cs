@@ -10,14 +10,14 @@ using MultiCodes.Lib.Models;
 
 namespace MultiCodes.ViewModels
 {
-    public class FileBar : INotifyPropertyChanged
+    public class FileBarViewModel : INotifyPropertyChanged
     {
-        static FileBar _instance;
-        public static FileBar Instance
+        static FileBarViewModel _instance;
+        public static FileBarViewModel Instance
         {
             get
             {
-                if (_instance == null) _instance = new FileBar();
+                if (_instance == null) _instance = new FileBarViewModel();
                 return _instance;
             }
         }
@@ -35,12 +35,26 @@ namespace MultiCodes.ViewModels
             }
         }
 
-        public FileBar()
+        FileManagerBridge fileManager = new Bridge.FileManagerBridge();
+        public FileBarViewModel()
         {
             _instance = this;
+        }
 
-            var fileManager = new Bridge.FileManagerBridge();
-            var treeBridge = fileManager.createProjectTree("C:\\Users\\LENOVO\\Desktop\\MultiCodes");
+        ItemNode _selectedItemNode;
+        public ItemNode SelectedItemNode
+        {
+            get => _selectedItemNode;
+            set
+            {
+                _selectedItemNode = value; OnPropertyChanged(nameof(SelectedItemNode));
+            }
+        }
+        public void LoadProject(string path)
+        {
+
+            RootFileTree = new Lib.Models.ItemNode(path, path);
+            var treeBridge = fileManager.createProjectTree(path);
             PopulateBridgeTreeToModel(treeBridge, _rootFileTree);
         }
 
@@ -48,17 +62,18 @@ namespace MultiCodes.ViewModels
         {
             foreach (ItemNodeBridge child in itemNodeBridge.Children)
             {
+                    var itemNode = new ItemNode(child.path, child.Name);
                 if (child.isDirectory)
                 {
-                    var itemNode = new ItemNode(child.path, child.Name);
+                    itemNode.SetIsDirectory();
                     PopulateBridgeTreeToModel(child, itemNode);
                     itemModel.AddChild(itemNode);
                 }
                 else
                 {
-                    var itemNode = new ItemNode(child.path, child.Name);
                     itemModel.AddChild(itemNode);
                 }
+                itemNode.SetParent(itemModel);
             }
 
             OnPropertyChanged(nameof(RootFileTree));
@@ -67,6 +82,20 @@ namespace MultiCodes.ViewModels
         void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void CreateFile(string name)
+        {
+            if (SelectedItemNode  == null) return;
+            var path = SelectedItemNode.IsDirectory ? SelectedItemNode.Path : SelectedItemNode.Parent.Path;
+            fileManager.createFile(path, name);
+        }
+
+        public void DeletePath(string path)
+        {
+            if (SelectedItemNode  == null) return;
+           
+            fileManager.deletePath(path);
         }
     }
 }

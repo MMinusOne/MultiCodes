@@ -42,7 +42,7 @@ namespace MultiCodes.ViewModels
             using (var folderDialog = new FolderBrowserDialog())
             {
                 folderDialog.ShowDialog();
-                var projectTree = new FileManagerBridge().createProjectTree(folderDialog.SelectedPath);
+                FileBarViewModel.Instance.LoadProject(folderDialog.SelectedPath);
             }
         }
 

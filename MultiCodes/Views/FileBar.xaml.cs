@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MultiCodes.Lib.Models;
+using MultiCodes.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,29 @@ namespace MultiCodes.Views
         public FileBar()
         {
             InitializeComponent();
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            FileBarViewModel.Instance.SelectedItemNode = (ItemNode)e.NewValue;
+        }
+
+        private void MenuItem_CreateFileClick(object sender, RoutedEventArgs e)
+        {
+            var createFileDialog = new Dialogs.CreateFileDialog();
+            createFileDialog.OnEnter((string name) =>
+            {
+                FileBarViewModel.Instance.CreateFile(name);
+                FileBarViewModel.Instance.LoadProject(FileBarViewModel.Instance.RootFileTree.Path);
+                return true;
+            });
+            createFileDialog.ShowDialog();
+        }
+
+        private void MenuItem_DeletePathClick(object sender, RoutedEventArgs e)
+        {
+            FileBarViewModel.Instance.DeletePath(FileBarViewModel.Instance.SelectedItemNode.Path);
+            FileBarViewModel.Instance.LoadProject(FileBarViewModel.Instance.RootFileTree.Path);
         }
     }
 }

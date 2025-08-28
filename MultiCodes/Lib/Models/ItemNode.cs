@@ -43,10 +43,26 @@ namespace MultiCodes.Lib.Models
             _name = name;
         }
 
+        ItemNode _parent;
+        public ItemNode Parent
+        {
+            get { return _parent; }
+            set { _parent = value; OnPropertyChanged(nameof(Parent)); }
+        }
+
+        public void SetParent(ItemNode parent)
+        {
+            _parent = parent;
+        }
         public void AddChild(ItemNode item)
         {
             Children.Add(item);
             OnPropertyChanged(nameof(Children));
+        }
+
+        public void SetIsDirectory()
+        {
+            _isDirectory = true;
         }
 
         void OnPropertyChanged(string propertyName)

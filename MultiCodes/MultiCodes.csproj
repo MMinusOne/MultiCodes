@@ -79,13 +79,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\CreateFileDialog.xaml.cs">
+      <DependentUpon>CreateFileDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lib\Converters.cs" />
     <Compile Include="Lib\Models\ItemNode.cs" />
     <Compile Include="Lib\RelayCommand.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
     <Compile Include="ViewModels\ConsoleViewModel.cs" />
     <Compile Include="ViewModels\TopBar.cs" />
-    <Compile Include="ViewModels\FileBar.cs" />
+    <Compile Include="ViewModels\FileBarViewModel.cs" />
     <Compile Include="Views\CodeEditor.xaml.cs">
       <DependentUpon>CodeEditor.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
     <Compile Include="Views\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\CreateFileDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,6 +176,15 @@
       <Name>Bridge</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Icons\c++.png" />
+    <Resource Include="Resources\Icons\c.png" />
+    <Resource Include="Resources\Icons\js.png" />
+    <Resource Include="Resources\Icons\py.png" />
+    <Resource Include="Resources\Icons\r.png" />
+    <Resource Include="Resources\Icons\ruby.png" />
+    <Resource Include="Resources\Icons\swift.png" />
+    <Resource Include="Resources\Icons\ts.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
