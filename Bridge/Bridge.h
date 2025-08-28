@@ -26,7 +26,7 @@ namespace  Bridge {
 	public ref class ConsoleBridge {
 	public:
 		String^ read();
-		void execute(String^ command);
+		void execute(String^ dir, String^ command);
 		List<String^>^ readBlocks();
 	};
 }

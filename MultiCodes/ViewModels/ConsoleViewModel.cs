@@ -46,7 +46,7 @@ namespace MultiCodes.ViewModels
             if(prompt.IsUserCommand && !prompt.Executed)
             {
                 var consoleBridge = new Bridge.ConsoleBridge();
-                consoleBridge.execute(prompt.Content);
+                consoleBridge.execute(FileBarViewModel.Instance.RootFileTree.Path, prompt.Content);
                 var blocks = consoleBridge.readBlocks();
                 var t = consoleBridge.read();
                 var block = blocks[blocks.Count-1];

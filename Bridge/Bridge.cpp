@@ -30,9 +30,11 @@ List<String^>^ ConsoleBridge::readBlocks() {
 	return consoleBlocks;
 }
 
-void ConsoleBridge::execute(String^ command) {
+void ConsoleBridge::execute(String^ currentDir, String^ command) {
 	auto commandNative = msclr::interop::marshal_as<std::string>(command);
-	consoleNativeInstance.execute(commandNative.c_str());
+	auto currentDirNative = msclr::interop::marshal_as<std::string>(currentDir);
+	auto commandFullNative = msclr::interop::marshal_as<std::string>("cd " + currentDir + " && " + command);
+	consoleNativeInstance.execute(commandFullNative.c_str());
 }
 
 void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNodeBridge^ rootTree) {
