@@ -7,25 +7,27 @@
 
 using namespace std::filesystem;
 
+void traverseDirectory(std::string directory, ItemNodeNative* tree) {
+	for (auto& item : directory_iterator(directory)) {
+		auto path = item.path().string();
 
-void __stdcall traverseDirectory(path directory, ItemNode& parent) {
-	for (const auto& item : directory_iterator(directory)) {
 		if (is_directory(item)) {
-			auto dirTree = new ItemNode(item);
-			traverseDirectory(item, *dirTree);
-			parent.addChild(*dirTree);
+			ItemNodeNative* itemNode = new ItemNodeNative(path);
+			itemNode->setIsDirectory();
+			traverseDirectory(path, itemNode);
+			tree->addChild(*itemNode);
 		}
 		else {
-			auto itemNode = new ItemNode(item);
-			parent.addChild(*itemNode);
+			ItemNodeNative* itemNode = new ItemNodeNative(path);
+			tree->addChild(*itemNode);
 		}
 	}
 }
 
-std::vector<ItemNode> __stdcall FileManager::createProjectTree(std::string directory) {
-	std::vector<ItemNode> tree = {};
+ItemNodeNative* __stdcall FileManager::createProjectTree(std::string directory) {
+	ItemNodeNative* rootNode = new ItemNodeNative(directory);
 
-	traverseDirectory(directory, tree[0]);
+	traverseDirectory(directory, rootNode);
 
-	return tree;
+	return rootNode;
 }

@@ -6,6 +6,6 @@
 class __declspec(dllexport) FileManager
 {
 public:
-	std::vector<ItemNode> createProjectTree(std::string directoryPath);
+	ItemNodeNative* createProjectTree(std::string directoryPath);
 };
 

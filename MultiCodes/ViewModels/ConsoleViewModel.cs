@@ -22,7 +22,6 @@ namespace MultiCodes.ViewModels
             }
         }
 
-
         public ConsoleViewModel()
         {
             _instance = this;

@@ -7,13 +7,15 @@ namespace  Bridge {
 
 	public ref class ItemNode {
 	public:
-		String^ fileName;
-		List <ItemNode^> children;
+		String^ path;
+		String^ Name;
+		bool isDirectory;
+		List <ItemNode^>^ Children = gcnew List<ItemNode^>();
 	};
 
 	public ref class FileManagerBridge {
 	public:
-		List<ItemNode^>^ createProjectTree(String^ directory);
+		ItemNode^ createProjectTree(String^ directory);
 	};
 
 	public ref class ConsoleBridge {

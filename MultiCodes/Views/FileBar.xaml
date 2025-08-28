@@ -5,10 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MultiCodes.Views"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:MultiCodes.ViewModels"
              d:DesignHeight="450" d:DesignWidth="200">
     <Border BorderBrush="{DynamicResource BgBase600}" BorderThickness="1">
         <Grid Background="{DynamicResource BgBase800}">
-            
+            <TreeView ItemsSource="{Binding Path=RootFileTree.Children, Source={x:Static vm:FileBar.Instance}}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
         </Grid>
     </Border>
 </UserControl>
