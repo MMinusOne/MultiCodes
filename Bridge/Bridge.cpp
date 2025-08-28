@@ -35,10 +35,10 @@ void ConsoleBridge::execute(String^ command) {
 	consoleNativeInstance.execute(commandNative.c_str());
 }
 
-void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNode^ rootTree) {
+void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNodeBridge^ rootTree) {
 	for (auto& child : nativeTree->getChildren()) {
 		if (child.getIsDirectory()) {
-			Bridge::ItemNode^ itemNode = gcnew Bridge::ItemNode();
+			Bridge::ItemNodeBridge^ itemNode = gcnew Bridge::ItemNodeBridge();
 			itemNode->path = msclr::interop::marshal_as<String^>(child.getPath());
 			itemNode->Name = msclr::interop::marshal_as<String^>(child.getName());
 			itemNode->isDirectory = true;
@@ -46,7 +46,7 @@ void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNode^ rootTree) {
 			rootTree->Children->Add(itemNode);
 		}
 		else {
-			Bridge::ItemNode^ itemNode = gcnew Bridge::ItemNode();
+			Bridge::ItemNodeBridge^ itemNode = gcnew Bridge::ItemNodeBridge();
 			itemNode->path = msclr::interop::marshal_as<String^>(child.getPath());
 			itemNode->Name = msclr::interop::marshal_as<String^>(child.getName());
 			rootTree->Children->Add(itemNode);
@@ -54,9 +54,9 @@ void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNode^ rootTree) {
 	}
 }
 
-Bridge::ItemNode^ FileManagerBridge::createProjectTree(String^ directory) {
+Bridge::ItemNodeBridge^ FileManagerBridge::createProjectTree(String^ directory) {
 	auto directoryTreeNative = fileManagerNative->createProjectTree(msclr::interop::marshal_as<std::string>((String^)directory));
-	ItemNode^ rootTree = gcnew Bridge::ItemNode();
+	ItemNodeBridge^ rootTree = gcnew Bridge::ItemNodeBridge();
 
 	traverseTree(directoryTreeNative, rootTree);
 

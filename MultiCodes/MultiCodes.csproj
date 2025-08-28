@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Lib\Converters.cs" />
+    <Compile Include="Lib\Models\ItemNode.cs" />
     <Compile Include="Lib\RelayCommand.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
     <Compile Include="ViewModels\ConsoleViewModel.cs" />

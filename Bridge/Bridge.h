@@ -5,17 +5,17 @@ using namespace System::Collections::Generic;
 
 namespace  Bridge {
 
-	public ref class ItemNode {
+	public ref class ItemNodeBridge {
 	public:
 		String^ path;
 		String^ Name;
 		bool isDirectory;
-		List <ItemNode^>^ Children = gcnew List<ItemNode^>();
+		List <ItemNodeBridge^>^ Children = gcnew List<ItemNodeBridge^>();
 	};
 
 	public ref class FileManagerBridge {
 	public:
-		ItemNode^ createProjectTree(String^ directory);
+		ItemNodeBridge^ createProjectTree(String^ directory);
 	};
 
 	public ref class ConsoleBridge {

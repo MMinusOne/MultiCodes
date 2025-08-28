@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge;
+using MultiCodes.Lib;
+using MultiCodes.Lib.Models;
 
 namespace MultiCodes.ViewModels
 {
@@ -20,7 +22,7 @@ namespace MultiCodes.ViewModels
             }
         }
 
-        ItemNode _rootFileTree;
+        ItemNode _rootFileTree = new ItemNode("root", "root");
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,10 +40,30 @@ namespace MultiCodes.ViewModels
             _instance = this;
 
             var fileManager = new Bridge.FileManagerBridge();
-            var tree = fileManager.createProjectTree("C:\\Users\\LENOVO\\Desktop\\MultiCodes");
-            _rootFileTree = tree;
+            var treeBridge = fileManager.createProjectTree("C:\\Users\\LENOVO\\Desktop\\MultiCodes");
+            PopulateBridgeTreeToModel(treeBridge, _rootFileTree);
+        }
+
+        void PopulateBridgeTreeToModel(ItemNodeBridge itemNodeBridge, ItemNode itemModel)
+        {
+            foreach (ItemNodeBridge child in itemNodeBridge.Children)
+            {
+                if (child.isDirectory)
+                {
+                    var itemNode = new ItemNode(child.path, child.Name);
+                    PopulateBridgeTreeToModel(child, itemNode);
+                    itemModel.AddChild(itemNode);
+                }
+                else
+                {
+                    var itemNode = new ItemNode(child.path, child.Name);
+                    itemModel.AddChild(itemNode);
+                }
+            }
+
             OnPropertyChanged(nameof(RootFileTree));
         }
+
         void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

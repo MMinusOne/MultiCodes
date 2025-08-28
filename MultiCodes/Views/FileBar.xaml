@@ -9,10 +9,10 @@
              d:DesignHeight="450" d:DesignWidth="200">
     <Border BorderBrush="{DynamicResource BgBase600}" BorderThickness="1">
         <Grid Background="{DynamicResource BgBase800}">
-            <TreeView ItemsSource="{Binding Path=RootFileTree.Children, Source={x:Static vm:FileBar.Instance}}">
+            <TreeView Background="Transparent" ItemsSource="{Binding Path=RootFileTree.Children, Source={x:Static vm:FileBar.Instance}}">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}" FontSize="12" FontWeight="SemiBold" Foreground="White"/>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
