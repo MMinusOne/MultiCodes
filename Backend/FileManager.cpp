@@ -42,8 +42,10 @@ void __stdcall FileManager::createFile(std::string path, std::string fileName) {
 void __stdcall FileManager::createFolder(std::string path, std::string folderName) {
 	std::string fullPath = path + folderName;
 
-	std::filesystem::path folder(fullPath);
+	std::filesystem::path folderPath(fullPath);
+	std::filesystem::create_directory(folderPath);
 }
+
 void __stdcall FileManager::deletePath(std::string path) {
-	std::filesystem::remove(path);
+	std::filesystem::remove_all(path);
 }

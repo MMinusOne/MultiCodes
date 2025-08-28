@@ -44,6 +44,23 @@ namespace MultiCodes.Views
             createFileDialog.ShowDialog();
         }
 
+        private void MenuItem_CreateFolderClick(object sender, RoutedEventArgs e)
+        {
+            var createFileDialog = new Dialogs.CreateFileDialog();
+            createFileDialog.OnEnter((string name) =>
+            {
+                FileBarViewModel.Instance.CreateFolder(name);
+                FileBarViewModel.Instance.LoadProject(FileBarViewModel.Instance.RootFileTree.Path);
+                return true;
+            });
+            createFileDialog.ShowDialog();
+        }
+
+        private void MenuItem_CopyPathClick(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(FileBarViewModel.Instance.SelectedItemNode.Path);
+        }
+
         private void MenuItem_DeletePathClick(object sender, RoutedEventArgs e)
         {
             FileBarViewModel.Instance.DeletePath(FileBarViewModel.Instance.SelectedItemNode.Path);

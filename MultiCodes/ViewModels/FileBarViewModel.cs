@@ -90,6 +90,12 @@ namespace MultiCodes.ViewModels
             var path = SelectedItemNode.IsDirectory ? SelectedItemNode.Path : SelectedItemNode.Parent.Path;
             fileManager.createFile(path, name);
         }
+        public void CreateFolder(string name)
+        {
+            if (SelectedItemNode  == null) return;
+            var path = SelectedItemNode.IsDirectory ? SelectedItemNode.Path : SelectedItemNode.Parent.Path;
+            fileManager.createFolder(path, name);
+        }
 
         public void DeletePath(string path)
         {

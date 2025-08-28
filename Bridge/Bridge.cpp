@@ -59,7 +59,7 @@ void FileManagerBridge::createFile(String^ path, String^ fileName) {
 }
 
 void FileManagerBridge::createFolder(String^ path, String^ folderName) {
-	fileManagerNative->createFolder(msclr::interop::marshal_as<std::string>(path), msclr::interop::marshal_as<std::string>(folderName));
+	fileManagerNative->createFolder(msclr::interop::marshal_as<std::string>(path + "\\"), msclr::interop::marshal_as<std::string>(folderName));
 }
 
 void FileManagerBridge::deletePath(String^ path) {

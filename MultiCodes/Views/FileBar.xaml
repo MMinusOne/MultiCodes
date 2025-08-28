@@ -29,6 +29,7 @@
             <Grid.ContextMenu>
                 <ContextMenu>
                     <MenuItem
+                        Click="MenuItem_CreateFolderClick"
                         Header="New Folder"
                         Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem
@@ -40,7 +41,10 @@
                         Header="Delete" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem Header="Rename" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                     <Separator />
-                    <MenuItem Header="Copy Path" Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem 
+                        Click="MenuItem_CopyPathClick"
+                        Header="Copy Path"
+                        Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                 </ContextMenu>
             </Grid.ContextMenu>
         </Grid>
