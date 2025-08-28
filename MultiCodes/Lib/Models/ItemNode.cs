@@ -17,15 +17,32 @@ namespace MultiCodes.Lib.Models
             set { _path = value; OnPropertyChanged(nameof(Path)); }
         }
         string _name;
-        public string Name {
-            get {  return _name; }
-            set { _name = value; OnPropertyChanged(nameof(Name)); }
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+
+                OnPropertyChanged(nameof(Name));
+            }
         }
-        bool _isDirectory;
+        ItemType _itemNodeType;
+        public ItemType ItemNodeType
+        {
+            get { return _itemNodeType; }
+            set { _itemNodeType = value; OnPropertyChanged(nameof(ItemNodeType)); }
+        }
+        bool _isDirectory = false;
         public bool IsDirectory
         {
             get { return _isDirectory; }
-            set { _isDirectory = value; OnPropertyChanged(nameof(IsDirectory));}
+            set
+            {
+                _isDirectory = value;
+                if (_isDirectory == true) ItemNodeType = ItemType.Folder;
+                OnPropertyChanged(nameof(IsDirectory));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -41,6 +58,47 @@ namespace MultiCodes.Lib.Models
         {
             _path = path;
             _name = name;
+            MakeType(name);
+        }
+
+        void MakeType(string name)
+        {
+            if (name.EndsWith(".js"))
+            {
+                ItemNodeType = ItemType.JavaScript;
+            }
+            else if (name.EndsWith(".ts"))
+            {
+                ItemNodeType = ItemType.TypeScript;
+            }
+            else if (name.EndsWith(".html"))
+            {
+                ItemNodeType = ItemType.HTML;
+            }
+            else if(name.EndsWith(".css"))
+            {
+                ItemNodeType = ItemType.CSS;
+            }
+            else if (name.EndsWith(".r"))
+            {
+                ItemNodeType = ItemType.R;
+            }
+            else if (name.EndsWith(".rs"))
+            {
+                ItemNodeType = ItemType.Rust;
+            }
+            else if (name.EndsWith(".py"))
+            {
+                ItemNodeType = ItemType.Python;
+            }
+            else if (name.EndsWith(".c"))
+            {
+                ItemNodeType = ItemType.C;
+            }
+            else if (name.EndsWith(".cpp"))
+            {
+                ItemNodeType = ItemType.Cpp;
+            }
         }
 
         ItemNode _parent;
@@ -69,5 +127,21 @@ namespace MultiCodes.Lib.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    public enum ItemType
+    {
+        JavaScript,
+        TypeScript,
+        CSharp,
+        Rust,
+        Cpp,
+        C,
+        Python,
+        Swift,
+        R,
+        HTML,
+        CSS,
+        Folder,
     }
 }

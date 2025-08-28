@@ -47,7 +47,13 @@ namespace MultiCodes.ViewModels
             get => _selectedItemNode;
             set
             {
-                _selectedItemNode = value; OnPropertyChanged(nameof(SelectedItemNode));
+                _selectedItemNode = value;
+                if (OnNewCallback != null && !value.IsDirectory)
+                {
+                    var textContent = fileManager.readFile(value.Path);
+                    OnNewCallback(textContent);
+                }
+                OnPropertyChanged(nameof(SelectedItemNode));
             }
         }
         public void LoadProject(string path)
@@ -95,6 +101,13 @@ namespace MultiCodes.ViewModels
             if (SelectedItemNode  == null) return;
             var path = SelectedItemNode.IsDirectory ? SelectedItemNode.Path : SelectedItemNode.Parent.Path;
             fileManager.createFolder(path, name);
+        }
+
+        Predicate<string> OnNewCallback;
+
+        public void OnNew(Predicate<string> onNewCallback)
+        {
+            OnNewCallback = onNewCallback;
         }
 
         public void DeletePath(string path)

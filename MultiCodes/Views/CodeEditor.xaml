@@ -35,12 +35,11 @@
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Column="1"
             Background="{DynamicResource BgBase500}"
-            SyntaxHighlighting="C#"
             FontWeight="SemiBold"
             FontFamily="Consolas"
             Padding="2,2,2,2"
-            x:Name="textEditor"
+            x:Name="TextEditor"
             FontSize="{Binding Path=FontSize, Source={x:Static vm:CodeEditorViewModel.Instance}}"
-            TextChanged="TextEditor_TextChanged"/>
+            />
     </Grid>
 </UserControl>

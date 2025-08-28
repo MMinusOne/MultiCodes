@@ -10,5 +10,6 @@ public:
 	void createFile(std::string path, std::string fileName);
 	void createFolder(std::string path, std::string folderName);
 	void deletePath(std::string path);
+	std::string readFile(std::string path);
 };
 

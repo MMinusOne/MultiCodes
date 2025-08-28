@@ -19,6 +19,7 @@ namespace  Bridge {
 		void createFile(String^ path, String^ fileName);
 		void createFolder(String^ path, String^ folderName);
 		void deletePath(String^ path);
+		String^ readFile(String^ path);
 	};
 
 	public ref class ConsoleBridge {

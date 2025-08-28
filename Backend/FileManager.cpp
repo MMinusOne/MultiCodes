@@ -49,3 +49,13 @@ void __stdcall FileManager::createFolder(std::string path, std::string folderNam
 void __stdcall FileManager::deletePath(std::string path) {
 	std::filesystem::remove_all(path);
 }
+
+std::string __stdcall FileManager::readFile(std::string path) {
+	std::ifstream file(path);
+	std::string content;
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	content = buffer.str();
+	file.close();
+	return content;
+}

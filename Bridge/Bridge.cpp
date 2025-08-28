@@ -66,6 +66,10 @@ void FileManagerBridge::deletePath(String^ path) {
 	fileManagerNative->deletePath(msclr::interop::marshal_as<std::string>(path));
 }
 
+String^ FileManagerBridge::readFile(String^ path) {
+	return msclr::interop::marshal_as<String^>(fileManagerNative->readFile(msclr::interop::marshal_as<std::string>(path)));
+}
+
 Bridge::ItemNodeBridge^ FileManagerBridge::createProjectTree(String^ directory) {
 	auto directoryTreeNative = fileManagerNative->createProjectTree(msclr::interop::marshal_as<std::string>((String^)directory));
 	ItemNodeBridge^ rootTree = gcnew Bridge::ItemNodeBridge();
