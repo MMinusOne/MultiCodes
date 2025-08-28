@@ -48,12 +48,15 @@ namespace MultiCodes.ViewModels
             set
             {
                 _selectedItemNode = value;
-                if (OnNewCallback != null && !value.IsDirectory)
+                if (value != null)
                 {
-                    var textContent = fileManager.readFile(value.Path);
-                    OnNewCallback(textContent);
+                    if (OnNewCallback != null && !value.IsDirectory)
+                    {
+                        var textContent = fileManager.readFile(value.Path);
+                        OnNewCallback(textContent);
+                    }
                 }
-                OnPropertyChanged(nameof(SelectedItemNode));
+                    OnPropertyChanged(nameof(SelectedItemNode));
             }
         }
         public void LoadProject(string path)

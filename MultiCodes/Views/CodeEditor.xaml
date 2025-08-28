@@ -32,6 +32,7 @@
         </Grid>
 
         <avalon:TextEditor
+            TextChanged="TextEditor_TextChanged"
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Column="1"
             Background="{DynamicResource BgBase500}"

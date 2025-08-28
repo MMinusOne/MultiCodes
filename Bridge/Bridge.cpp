@@ -54,6 +54,10 @@ void traverseTree(ItemNodeNative* nativeTree, Bridge::ItemNodeBridge^ rootTree) 
 	}
 }
 
+void FileManagerBridge::saveFile(String^ path, String^ code) {
+	fileManagerNative->saveFile(msclr::interop::marshal_as<std::string>(path), msclr::interop::marshal_as<std::string>(code));
+}
+
 void FileManagerBridge::createFile(String^ path, String^ fileName) {
 	fileManagerNative->createFile(msclr::interop::marshal_as<std::string>(path + "\\"), msclr::interop::marshal_as<std::string>(fileName));
 }

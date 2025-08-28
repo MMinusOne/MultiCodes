@@ -29,10 +29,17 @@ namespace MultiCodes.Lib.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var type = (string)parameter;
+            if(type == "Create" && FileBarViewModel.Instance.RootFileTree != null)
+            {
+                return Visibility.Visible;
+            }
+
             if(value == null)
             {
                 return Visibility.Hidden;
             }
+
 
             return Visibility.Visible;
         }

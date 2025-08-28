@@ -64,5 +64,9 @@ namespace MultiCodes.Views
             });
         }
 
+        private void TextEditor_TextChanged(object sender, EventArgs e)
+        {
+            CodeEditorViewModel.Instance.Code = TextEditor.Text;
+        }
     }
 }

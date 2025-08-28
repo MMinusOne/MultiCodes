@@ -1,4 +1,5 @@
-﻿using MultiCodes.Views;
+﻿using Bridge;
+using MultiCodes.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,6 +36,8 @@ namespace MultiCodes.ViewModels
             set { _codeLines = value; OnPropertyChanged(nameof(CodeLines)); }
         }
 
+        FileManagerBridge fileManagerBridge = new FileManagerBridge();
+
         int _fontSize = 15;
         public int FontSize
         {
@@ -57,9 +60,11 @@ namespace MultiCodes.ViewModels
                 {
                     if (_code[i-1] ==  '\n')
                     {
-                        CodeLines.Add(CodeLines.Count.ToString());
+                        CodeLines.Add((CodeLines.Count+1).ToString());
                     }
                 }
+
+                fileManagerBridge.saveFile(FileBarViewModel.Instance.SelectedItemNode.Path, value);
 
                 OnPropertyChanged(nameof(Code));
             }

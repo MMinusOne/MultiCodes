@@ -31,10 +31,12 @@
                     <MenuItem
                         Click="MenuItem_CreateFolderClick"
                         Header="New Folder"
+                        CommandParameter="Create"
                         Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem
                         Click="MenuItem_CreateFileClick"
                         Header="New File"
+                        CommandParameter="Create"
                         Visibility="{Binding Path=SelectedItemNode, Source={x:Static vm:FileBarViewModel.Instance}, Converter={StaticResource SelectedItemNodeToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem 
                         Click="MenuItem_DeletePathClick"

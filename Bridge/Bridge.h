@@ -20,6 +20,7 @@ namespace  Bridge {
 		void createFolder(String^ path, String^ folderName);
 		void deletePath(String^ path);
 		String^ readFile(String^ path);
+		void saveFile(String^ path, String^ code);
 	};
 
 	public ref class ConsoleBridge {

@@ -23,7 +23,7 @@ namespace MultiCodes.Lib.Models
             set
             {
                 _name = value;
-
+                MakeType(_name);
                 OnPropertyChanged(nameof(Name));
             }
         }

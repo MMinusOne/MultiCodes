@@ -25,6 +25,12 @@ void traverseDirectory(std::string directory, ItemNodeNative* tree) {
 	}
 }
 
+void __stdcall FileManager::saveFile(std::string filePath, std::string code) {
+	std::ofstream file(filePath);
+	file << code;
+	file.close();
+}
+
 ItemNodeNative* __stdcall FileManager::createProjectTree(std::string directory) {
 	ItemNodeNative* rootNode = new ItemNodeNative(directory);
 
