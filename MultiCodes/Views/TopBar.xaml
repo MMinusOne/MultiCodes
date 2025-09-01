@@ -13,8 +13,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Margin="2,2,2,2" HorizontalAlignment="Center">ADHD</Button>
-            <Button Margin="2,2,2,2" HorizontalAlignment="Center">Ask AI</Button>
+            <Button Margin="2,2,2,2" HorizontalAlignment="Center" Command="{Binding Path=AskAI, Source={x:Static vm:TopBar.Instance}}">Ask AI</Button>
             <Button Margin="2,2,2,2" HorizontalAlignment="Center" Command="{Binding Path=ZoomOutCommand, Source={x:Static vm:TopBar.Instance}}">Zoom Out</Button>
             <Button Margin="2,2,2,2" HorizontalAlignment="Center" Command="{Binding Path=ZoomInCommand, Source={x:Static vm:TopBar.Instance}}">Zoom In</Button>
         </StackPanel>

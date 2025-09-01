@@ -71,6 +71,22 @@ namespace MultiCodes.ViewModels
             }
         }
 
+         ICommand _askAICommand;
+
+        public ICommand AskAICommand
+        {
+            get
+            {
+                if (_askAICommand == null) _askAICommand = new RelayCommand(AskAI, (object obj) => true);
+                return _askAICommand;
+            }
+        }
+
+        void AskAI(object obj)
+        {
+            
+        }
+
         void ZoomOut(object obj)
         {
             CodeEditorViewModel.Instance.FontSize -= 1;
