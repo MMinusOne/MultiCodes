@@ -47,8 +47,7 @@ namespace MultiCodes.ViewModels
             {
                 var consoleBridge = new Bridge.ConsoleBridge();
                 consoleBridge.execute(FileBarViewModel.Instance.RootFileTree.Path, prompt.Content);
-                var blocks = consoleBridge.readBlocks();
-                var t = consoleBridge.read();
+                var blocks = consoleBridge.readBlocks();;
                 var block = blocks[blocks.Count-1];
                 _CLIBlocks.Add(new CLIBlock(block, false, true));
                 _CLIBlocks.Add(new CLIBlock("", true, false));

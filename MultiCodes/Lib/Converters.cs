@@ -16,7 +16,9 @@ namespace MultiCodes.Lib.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var codeBlock = (CLIBlock)value;
-            return !(codeBlock.IsUserCommand && !codeBlock.Executed);
+            var isReadonly =  !codeBlock.IsUserCommand || codeBlock.Executed;
+
+            return isReadonly;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
